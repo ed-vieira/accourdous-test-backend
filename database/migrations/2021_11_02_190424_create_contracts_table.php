@@ -14,12 +14,14 @@ class CreateContractsTable extends Migration
     public function up()
     {
         Schema::create('contracts', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
-
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('property_id')->unique();
+            $table->morphs('owner');
+            $table->mediumText('text');
+            $table->integer('type');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('id')->references('id')
+            $table->foreign('property_id')->references('id')
                 ->on('properties')->onDelete('cascade')
                     ->onUpdate('cascade');
         });
