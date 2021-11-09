@@ -28,6 +28,9 @@ Route::namespace('Contracts')->group(function(){
 });
 
 Route::namespace('Properties')->group(function(){
+    Route::get('properties/addresses', 'PropertyController@addresses');
+    Route::get('properties/trashed', 'PropertyController@trashed');
+    Route::put('properties/restore/{trashed_property}', 'PropertyController@restore');
     Route::resource('properties', 'PropertyController');
 });
 
