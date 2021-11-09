@@ -4,10 +4,24 @@ namespace App\Http\Controllers\Properties;
 
 use App\Models\Property;
 use Illuminate\Http\Request;
+use App\Http\Requests\Properties\Request as PropertyRequest;
+use App\Http\Resources\Properties\PropertyResource;
 use App\Http\Controllers\Auth\API_Controller;
+use Illuminate\Support\Facades\Log;
+use App\Repository\Properties\PropertyService;
 
 class PropertyController extends API_Controller
 {
+
+    protected $service;
+
+    public function __construct(PropertyService $service)
+    {
+        parent::__construct();
+        $this->service = $service;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,17 +29,16 @@ class PropertyController extends API_Controller
      */
     public function index()
     {
-        return response()->json('propeerties');
+        $search = request('search','');
+        $data = $this->service->search($search)->paginate();
+        return PropertyResource::collection($data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function addresses()
     {
-        //
+        $data = $this->service->addresses()
+                    ->whereContracted(false)->get();
+        return PropertyResource::collection($data);
     }
 
     /**
@@ -34,9 +47,11 @@ class PropertyController extends API_Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PropertyRequest $request)
     {
-        //
+        $input = $request->all();
+        $data = $this->service->create($input);
+        return new PropertyResource($data);
     }
 
     /**
@@ -47,19 +62,9 @@ class PropertyController extends API_Controller
      */
     public function show(Property $property)
     {
-        //
+        return new PropertyResource($property);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Property  $property
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Property $property)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -68,9 +73,10 @@ class PropertyController extends API_Controller
      * @param  \App\Models\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Property $property)
+    public function update(PropertyRequest $request, Property $property)
     {
-        //
+        $this->service->update($property, $request->all());
+        return new PropertyResource($property);
     }
 
     /**
@@ -81,6 +87,23 @@ class PropertyController extends API_Controller
      */
     public function destroy(Property $property)
     {
-        //
+        $this->service->delete($property);
+        return response()->json([],204);
     }
+
+
+    public function trashed()
+    {
+        $search = request('search','');
+        $data = $this->service->search($search)->onlyTrashed()->paginate();
+        return PropertyResource::collection($data);
+    }
+
+
+    public function restore(Property $trashedProperty)
+    {
+        $this->service->restore($trashedProperty);
+        return new PropertyResource($trashedProperty);
+    }
+
 }

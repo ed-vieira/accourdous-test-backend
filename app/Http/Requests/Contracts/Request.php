@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Properties;
+namespace App\Http\Requests\Contracts;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRequest extends FormRequest
+class Request extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,13 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'ownerType' => 'required',
+            'property_id' => 'required',
+            'text' => 'required',
+            'name' => 'required',
+            'email' => 'required|email',
+            'cpf' => 'sometimes|required',
+            'cnpj' => 'sometimes|required',
         ];
     }
 }

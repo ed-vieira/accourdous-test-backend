@@ -4,10 +4,23 @@ namespace App\Http\Controllers\Contracts;
 
 use App\Models\Contract;
 use Illuminate\Http\Request;
+use App\Http\Resources\Contracts\ContractResource;
+use App\Repository\Contracts\ContractService;
+use App\Http\Requests\Contracts\Request as ContractRequest;
 use App\Http\Controllers\Auth\API_Controller;
 
 class ContractController extends API_Controller
 {
+
+
+    protected $service;
+
+    public function __construct(ContractService $service)
+    {
+        parent::__construct();
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,18 +28,12 @@ class ContractController extends API_Controller
      */
     public function index()
     {
-        return response()->json('contracts');
+        $search = request('search','');
+        $data = $this->service->search($search)->paginate();
+        return response()->json($data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -34,9 +41,11 @@ class ContractController extends API_Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContractRequest $request)
     {
-        //
+        $input = $request->all();
+        $data = $this->service->create($input);
+        return new ContractResource($data);
     }
 
     /**
@@ -47,19 +56,9 @@ class ContractController extends API_Controller
      */
     public function show(Contract $contract)
     {
-        //
+        return new ContractResource($contract);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Contract  $contract
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contract $contract)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -68,9 +67,10 @@ class ContractController extends API_Controller
      * @param  \App\Models\Contract  $contract
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contract $contract)
+    public function update(ContractRequest $request, Contract $contract)
     {
-        //
+        $this->service->update($contract, $request->all());
+        return new ContractResource($contract);
     }
 
     /**
@@ -81,6 +81,7 @@ class ContractController extends API_Controller
      */
     public function destroy(Contract $contract)
     {
-        //
+        $this->service->delete($contract);
+        return response()->json([],204);
     }
 }
