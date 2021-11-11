@@ -1,69 +1,119 @@
-### Sobre a Accordous
-##### Não perca mais tempo com seus contratos.
-Somos uma empresa de tecnologia voltada a simplificação de processos burocráticos! Desde a concepção até a cobrança de contratos, seja ele de imóveis, acordo, prestação de serviços, entre outros.
+
+## Descrição
+
+  Tecnologias
+   <p>Front-end</p>
+   <ul>
+     <li>Vue 2.5</li>
+     <li>Bootstrap 4</li>
+     <li>Bootstrap-vue 2</li>
+     <li>Template: Core UI - Vue</li>
+     <li>Docker / Docker-compose</li>
+   </ul> 
+
+   <p> Back-end</p> 
+     <ul>
+     <li>Framework: Laravel 5.8</li>
+     <li>Banco de dados: MySQL 5.7</li>
+     <li>Docker / Docker-compose</li>
+   </ul> 
+
+## Requisitos
+  <p>preparado para ser executado utilizando <u>Linux</u> como sistema operacional,
+    utilizando <u>docker versão 20.10.*</u> e <u>docker-compose versão 1.28.*</u>.
+  </p>
 
 
-##### Teste Full Stack Laravel
-O objetivo deste teste é entendermos um pouco mais sobre seus conhecimentos de Frontend e Backend no Laravel.
+## Clonar o projeto (back-end)
 
-##### Requisitos
-- PHP 7.1+
-- Laravel (Preferência 5.8+)
-- Vue.JS
-- Docker Engine
+<a href="https://github.com/ed-vieira/laravel-test-backend" target="_blank">
+  Projeto back-end
+</a>
 
-##### Orientações
-Faça um fork deste projeto.
+```bash
+$ git clone git@github.com:ed-vieira/laravel-test-backend.git
+```
 
-Para facilitar o seu desenvolvimento, nós disponibilizamos um ``docker-compose.yml`` com o serviços que utilizamos habitualmente no nosso dia a dia.
+## Clonar o projeto (front-end)
 
-#### O Desafio
-Simular o cadastro de uma propriedade e criar um contrato para o mesmo.
+<a href="https://github.com/ed-vieira/accordous-test-frontend" target="_blank">
+  Projeto front-end
+</a>
 
-##### Funcionalidade 1:
-  - Permitir o cadastro de um imóvel com algumas características. 
-  - o cadastro de um imóvel deve possuir:
-  - e-mail do proprietário, rua, número, complemento, bairro, cidade, estado;
-
-Para que o cadastro ocorra deverá haver validações em dois níveis. Frontend e backend:
-- 1 - e-mail, rua, bairro, cidade e estado são campos obrigatórios;
-- 2 - e-mail deverá ser validado;
-
-##### Funcionalidade 2:
-  - Contexto: Permitir visualização dos imóveis cadastrados.
-    Os dados de imóveis deverão ser carregados via request assíncrona. Esses dados deverão ser exibidos numa tabela e ao menos uma das colunas serem ordenáveis.
-    Dados que deverão ser exibidos na tabela:
-  - E-mail do proprietário;
-  - Rua, número, cidade, estado (separados por vírgula);
-  - Status (Contratado / Não contratado)
-  - Coluna para ações (remover).
-
-##### Funcionalidade 3:
-  - Contexto: permitir a remoção de uma propriedade via chamada assíncrona com atualização posterior da lista de propriedades.
-  - Observação: a remoção de uma propriedade deverá ser virtual.
-
-##### Funcionalidade 4:
-  - Contexto: Criação de um contrato que permita associação com uma propriedade. Um contrato possui os seguintes campos:
-  - Propriedade (deverá ser selecionável a propriedade. Sendo usado como informação da propriedade a rua, número, complemento, bairro);
-  - Tipo de pessoa (Pessoa física ou Pessoa Jurídica);
-  - Documento (A máscara do campo de documento deverá alterar de acordo com o tipo de pessoa. Pessoa física deverá ser máscara de CPF e pessoa jurídica deverá ser máscara de CNPJ)
-  - E-mail do contratante;
-  - Nome completo do contratante;
-
-##### Regras específicas sobre a criação de contrato:
-- Uma propriedade não pode estar associada a dois contratos;
-- Todos os campos do contrato são obrigatórios;
-- Deverá ocorrer validação do documento;
-- Deverá ocorrer validação do e-mail;
+```bash
+$ git clone git@github.com:ed-vieira/accordous-test-frontend.git
+```
 
 
-### Extras
-- Job: deve-se utilizar alguma forma de job;
-- Teste unitário de backend;
-- Teste de integração backend;
-- SPA.
-- Usabilidade (A usabilidade das funcionalidades fica a cargo do desenvolvedor) :D
+## Instalação
+  <p> Para ser executado corretamente é necessário executar os comandos necessários na ordem 
+  correta  </p>
+  <p> Para auxiliar nesta tarefa é utilizado o <strong>Makefile</strong> para simplificar e organizar os comandos, de forma que comandos mais complexos ou que precisam ser executados em uma ordem determinada possam ser executados de maneira correta. 
+  </p> 
+
+ <a href="https://github.com/ed-vieira/laravel-test-backend" target="_blank">
+  <h4>Back-end</h4>
+ </a>
+
+ <p> Para executar o projeto pela primeira vez execute o comando na pasta do projeto: </p>
+
+```bash
+$ make install
+```
+
+<p> Execute as migrations e o seeder para criar e popular as tebelas: </p>
+
+```bash
+$ make migrate-seed
+```
 
 
-### Entrega
-Deixar um repositório público e nos enviar por e-mail - o mesmo e-mail que foi enviado o teste.
+
+<p> O primeiro comando ira prepara os arquivos de configuração e iniciará os processos do docker-compose, os comandos podem ser vistos no arquivo <strong>Makefile</strong> na pasta do projeto.</p>
+
+<p>O segundo irá criar e preencher as tabelas com dados do Faker</p>
+
+<p>Pode ser necessário alguns segundos de diferença entre a execução dos dois comandos porque o cointainer do banco de dados pode ja ter iniciado com sucesso mas ainda não estar pronto para estabelecer conexões. </p>
+
+
+<a href="https://github.com/ed-vieira/accordous-test-frontend" target="_blank">
+ <h4>Front-end</h4>
+</a> 
+
+ <p> Para executar o projeto front-end pela primeira vez execute o comando na pasta do projeto: </p>
+
+```bash
+$ make init
+```
+ <p>Este comando prepara os arquivos de configuração e inicia o container</p>
+
+
+ <p> O container do projeto do front-end estara sendo executado na porta 80 e o back-end estara sendo executado na porta 8080 </p>  
+
+<p>
+ <a href="http://localhost" target="_blank"> 
+  http://localhost
+ </a> 
+</p>
+
+
+<p>* Possíveis erros</p>
+
+<p>Se sua configuração do docker exigir privilégios de usuario basta executar os mesmos comandos como sudo</p>
+<p>exemplo:</p>
+
+```bash
+$ sudo make install
+```
+
+<p>Problemas com o comando <strong>make</strong> ?</p>
+<p>Normalmente este comando vem instalado por padrão, caso este comando não seja reconhecido em sua distro:</p>
+
+<p>
+<a href="https://askubuntu.com/questions/192645/make-command-not-found" target="_blank">https://askubuntu.com/questions/192645/make-command-not-found</a>
+</p>
+
+
+## License
+
+[MIT licensed](LICENSE).
