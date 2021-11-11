@@ -1,4 +1,4 @@
-docker_network=admin_app_network
+docker_network=dashboard_app_network
 app=app
 
 install:
@@ -7,6 +7,8 @@ install:
 	cp .env.testing.example .env.testing
 	php artisan key:generate
 	touch database/database.sqlite
+
+init:
 	docker network inspect $(docker_network) > /dev/null 2>&1 || \
 	docker network create -d bridge $(docker_network)
 	docker-compose up --build
