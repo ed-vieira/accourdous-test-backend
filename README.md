@@ -83,7 +83,7 @@ $ make migrate-seed
  <p> Para executar o projeto front-end pela primeira vez execute o comando na pasta do projeto: </p>
 
 ```bash
-$ make init
+$ make install
 ```
  <p>Este comando prepara os arquivos de configuração e inicia o container</p>
 
