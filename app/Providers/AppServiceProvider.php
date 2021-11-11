@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Property;
+use App\Observers\PropertyObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,6 +33,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Property::observe(PropertyObserver::class);
     }
 }
