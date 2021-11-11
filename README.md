@@ -55,10 +55,16 @@ $ git clone git@github.com:ed-vieira/accordous-test-frontend.git
   <h4>Back-end</h4>
  </a>
 
- <p> Para executar o projeto pela primeira vez execute o comando na pasta do projeto: </p>
+ <p> Para executar o projeto pela primeira vez execute os comandos na pasta do projeto: </p>
 
+Instale as dependencias:
 ```bash
 $ make install
+```
+
+Execute o build dos containers:
+```bash
+$ make init
 ```
 
 <p> Execute as migrations e o seeder para criar e popular as tebelas: </p>
@@ -68,10 +74,9 @@ $ make migrate-seed
 ```
 
 
+<p> Os comandos irão prepara os arquivos de configuração e iniciarão os processos do docker-compose, os comandos podem ser vistos no arquivo <strong>Makefile</strong> na pasta do projeto.</p>
 
-<p> O primeiro comando ira prepara os arquivos de configuração e iniciará os processos do docker-compose, os comandos podem ser vistos no arquivo <strong>Makefile</strong> na pasta do projeto.</p>
-
-<p>O segundo irá criar e preencher as tabelas com dados do Faker</p>
+<p>O comando migrate-seed irá criar e preencher as tabelas com dados do Faker</p>
 
 <p>Pode ser necessário alguns segundos de diferença entre a execução dos dois comandos porque o cointainer do banco de dados pode ja ter iniciado com sucesso mas ainda não estar pronto para estabelecer conexões. </p>
 
