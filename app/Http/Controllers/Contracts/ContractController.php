@@ -45,7 +45,8 @@ class ContractController extends API_Controller
     {
         $input = $request->all();
         $data = $this->service->create($input);
-        return new ContractResource($data);
+        return (new ContractResource($data))
+                    ->response()->setStatusCode(201);
     }
 
     /**

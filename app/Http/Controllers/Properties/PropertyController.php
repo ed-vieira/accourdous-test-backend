@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Properties\Request as PropertyRequest;
 use App\Http\Resources\Properties\PropertyResource;
 use App\Http\Controllers\Auth\API_Controller;
-use Illuminate\Support\Facades\Log;
 use App\Repository\Properties\PropertyService;
 
 class PropertyController extends API_Controller
@@ -51,7 +50,8 @@ class PropertyController extends API_Controller
     {
         $input = $request->all();
         $data = $this->service->create($input);
-        return new PropertyResource($data);
+        return (new PropertyResource($data))
+                ->response()->setStatusCode(201);
     }
 
     /**
