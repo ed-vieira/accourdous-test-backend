@@ -4,8 +4,8 @@ app=app
 install:
 	composer install
 	cp .env.example .env
-	cp .env.testing.example .env.testing
 	php artisan key:generate
+	cp .env .env.testing
 	touch database/database.sqlite
 
 init:
