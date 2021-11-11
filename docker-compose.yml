@@ -32,12 +32,12 @@ services:
       - "${APP_PORT:-80}:8080"
     networks:
       - local_network
-      - dashboard_app_network
+      - admin_app_network
 
 
 networks:
     local_network:
       driver: bridge
-    dashboard_app_network:
+    admin_app_network:
       driver: bridge
       external: true

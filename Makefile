@@ -1,4 +1,4 @@
-docker_network=dashboard_app_network
+docker_network=admin_app_network
 app=app
 
 install:
