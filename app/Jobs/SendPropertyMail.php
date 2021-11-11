@@ -37,7 +37,6 @@ class SendPropertyMail implements ShouldQueue
      */
     public function handle()
     {
-        $this->property->email = 'edfelip@gmail.com';
         Mail::to($this->property->email)
             ->send(new Email($this->property));
     }
