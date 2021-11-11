@@ -25,7 +25,7 @@ class Request extends FormRequest
     {
         return [
             'ownerType' => 'required',
-            'property_id' => 'required',
+            'property_id' => 'required|unique:contracts',
             'text' => 'required',
             'name' => 'required',
             'email' => 'required|email',
