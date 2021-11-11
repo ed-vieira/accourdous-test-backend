@@ -78,8 +78,13 @@ $ make migrate-seed
 
 <p>O comando migrate-seed irá criar e preencher as tabelas com dados do Faker</p>
 
-<p>Pode ser necessário alguns segundos de diferença entre a execução dos dois comandos porque o cointainer do banco de dados pode ja ter iniciado com sucesso mas ainda não estar pronto para estabelecer conexões. </p>
+<p>É necessário alguns segundos de diferença entre a execução dos comandos "make init" e "make migrate-seed" porque o cointainer do banco de dados pode ja ter iniciado com sucesso mas ainda não estar pronto para estabelecer conexões. </p>
 
+
+Para executar testes
+```bash
+$ make test
+```
 
 <a href="https://github.com/ed-vieira/accordous-test-frontend" target="_blank">
  <h4>Front-end</h4>
@@ -94,6 +99,12 @@ $ make install
 
 
  <p> O container do projeto do front-end estara sendo executado na porta 80 e o back-end estara sendo executado na porta 8080 </p>  
+ 
+<hr/>
+<p>Login:</p>
+<p>Email: admin@developer.com</p>
+<p>Senha: admin</p>
+<hr/>
 
 <p>
  <a href="http://localhost" target="_blank"> 
