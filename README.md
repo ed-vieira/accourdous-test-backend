@@ -26,12 +26,12 @@
 
 ## Clonar o projeto (back-end)
 
-<a href="https://github.com/ed-vieira/laravel-test-backend" target="_blank">
+<a href="https://github.com/ed-vieira/accordous-test-backend" target="_blank">
   Projeto back-end
 </a>
 
 ```bash
-$ git clone git@github.com:ed-vieira/laravel-test-backend.git
+$ git clone git@github.com:ed-vieira/accordous-test-backend.git
 ```
 
 ## Clonar o projeto (front-end)
@@ -51,7 +51,7 @@ $ git clone git@github.com:ed-vieira/accordous-test-frontend.git
   <p> Para auxiliar nesta tarefa é utilizado o <strong>Makefile</strong> para simplificar e organizar os comandos, de forma que comandos mais complexos ou que precisam ser executados em uma ordem determinada possam ser executados de maneira correta. 
   </p> 
 
- <a href="https://github.com/ed-vieira/laravel-test-backend" target="_blank">
+ <a href="https://github.com/ed-vieira/accordous-test-backend" target="_blank">
   <h4>Back-end</h4>
  </a>
 
